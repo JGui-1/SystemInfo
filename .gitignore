@@ -1,0 +1,26 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.sln.docstates
+
+# Rider
+.idea/
+
+# Arquivos temporários
+*.tmp
+*.temp
+*.log
+
+# Backups
+*.bak
+*.swp
+*.db
+
+# Testes
+TestResults/
