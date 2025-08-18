@@ -19,10 +19,13 @@ SystemInfo é uma ferramenta em .NET para coletar, exibir e manipular informaç�
 - **Program.cs** → Ponto de entrada.
 
 ## Documentação
-- [`USER_MANUAL.md`](USER_MANUAL.md) → Manual do usuário.
-- [`INSTALL.md`](INSTALL.md) → Instalação e execução.
-- [`MANUAL_DEV.md`](MANUAL_DEV.md) → Guia do desenvolvedor.
-- [`API_GUIDE.md`](API_GUIDE.md) → Referência da API.
+
+- [Manual do usuário](docs/USER_MANUAL.md)
+- [Instalação e execução](docs/INSTALL.md)
+- [Guia do desenvolvedor](docs/MANUAL_DEV.md)
+- [Referência da API](docs/API_GUIDE.md)
+
+
 
 ---
 
