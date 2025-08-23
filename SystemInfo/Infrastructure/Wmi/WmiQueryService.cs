@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Management;
 using SystemInfo.Core.Abstractions;
 using SystemInfo.Configuration;
@@ -24,14 +25,22 @@ namespace SystemInfo.Infrastructure.Wmi
         public IEnumerable<IDictionary<string, object>> QuerySelect(string alias, IEnumerable<string> properties, string whereClause = null)
         {
             var (ns, cls) = WmiClassMap.Get(alias);
-            string select = string.Join(",", properties);
-            string q = $"SELECT {select} FROM {cls}" + (whereClause != null ? " WHERE " + whereClause : "");
+            var props = properties?.ToArray() ?? new string[] { "*" };
+            string q = $"SELECT {string.Join(", ", props)} FROM {cls}" + (whereClause != null ? " WHERE " + whereClause : "");
             using var searcher = new ManagementObjectSearcher(ns, q);
             foreach (ManagementObject obj in searcher.Get())
             {
                 var dict = new Dictionary<string, object>();
-                foreach (var p in properties)
-                    dict[p] = obj[p];
+                foreach (var name in props)
+                {
+                    if (name == "*")
+                    {
+                        foreach (PropertyData p in obj.Properties)
+                            dict[p.Name] = p.Value;
+                        break;
+                    }
+                    dict[name] = obj.Properties[name]?.Value;
+                }
                 yield return dict;
             }
         }

@@ -65,7 +65,7 @@ namespace SystemInfo.Features.Fingerprint
                 bool printedAny = false;
                 foreach (var dict in results)
                 {
-                    foreach (var kv in dict)
+                    foreach (var kv in dict.OrderBy(k => k.Key)) // ordenado p/ leitura melhor
                         _output.WriteLine($"  {kv.Key}: {ValueFormatter.Format(kv.Value)}");
                     printedAny = true;
                     break; // primeira instância
